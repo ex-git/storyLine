@@ -1,0 +1,109 @@
+$width: 80vw;
+$legend: 30px;
+
+.newMoment {
+    .new {
+        width: $width;
+        margin: auto;
+        text-align: center;
+        legend {
+            font-size: $legend;
+            margin: 30px auto
+        }
+        legend + label {
+            margin-top: 20px;
+            display: inline-block;
+            font-size: 22px;
+        }
+        label {
+            display: block;
+            font-size: $legend - 10px;
+            margin: 10px auto;
+        }
+        input[type='file'] {
+            width: 0.1px;
+            height: 0.1px;
+            // opacity: 0;
+            overflow: hidden;
+            position: absolute;
+            z-index: -1;
+            visibility: hidden
+        }
+        input[type="date"] {
+            border: none;
+            border-bottom: 1px solid black;
+            width: 250px;
+            text-align: center;
+            font-size: 20px
+        }
+        input[type='file'] + label {
+            font-size: 30px;
+            background-color: rgb(255, 63, 63);
+            padding: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 300px;
+            height: 60px;
+            line-height: 2em;
+            margin: 30px auto;
+            color: #fdfdfd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: shakeMe 1s ease-out;
+        }
+        textarea {
+            width: 300px;
+            min-height: 80px;
+            font-size: 20px
+        }
+        input[type='file'] + label:hover {
+            animation: hoverLabel 1s infinite;
+        }
+        input[type='file'] + label svg {
+            color: #fdfdfd;
+            margin-right: 5px;
+        }
+        @keyframes hoverLabel {
+            0% {
+                background-color: rgb(138, 0, 0);
+            }
+            30% {
+                background-color: rgba(255, 0, 0, 0.9);
+            }
+            75% {
+                background-color: rgba(255, 0, 0, 0.8);
+              }
+            100% {
+                background-color: rgba(255, 0, 0, 0.9);
+            }
+        }
+        @keyframes shakeMe {
+            0% {
+              transform: rotate(0deg);
+            }
+            40% {
+              transform: rotate(3deg);
+            }
+            60% {
+                transform: rotate(-2deg);
+            }
+            80% {
+                transform: rotate(1deg);
+            }
+            100% {
+              transform: rotate(0deg);
+            }
+        }
+        button {
+            font-size: $legend;
+            width: 200px;
+            display: block;
+            margin: 30px auto;
+            height: 50px;
+            border-radius: 5px;
+            background-color: blue;
+            color: #fff
+        }
+    }
+}

@@ -1,0 +1,23 @@
+$navFontSize : 20px;
+$linkColor: #fff;
+$backgroundColor: #04668D;
+
+nav {
+    font-size: $navFontSize;
+    background-color: $backgroundColor;
+    display: flex;
+    justify-content: space-between;
+    height: 60px;
+    align-items: center;
+    padding-left: 30px;
+    padding-right: 10px;
+    ul li {
+        display: inline-block;
+        list-style: none;
+        padding-right: 20px
+    }
+    a {
+        text-decoration: none;
+        color: $linkColor
+    }
+}

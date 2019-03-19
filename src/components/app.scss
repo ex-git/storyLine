@@ -1,0 +1,17 @@
+/* CSS reset */
+html, body, div, span, h1, h2, pre, a, img, ol, ul, li, section, footer, .resultAndPool {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+    // font: 'Open Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
+    box-sizing: border-box;
+}
+
+section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 90vh;
+}
