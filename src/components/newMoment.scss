@@ -37,19 +37,19 @@ $legend: 30px;
             font-size: 20px
         }
         input[type='file'] + label {
-            font-size: 30px;
+            font-size: 35px;
             background-color: rgb(255, 63, 63);
             padding: 5px;
             border-radius: 5px;
             cursor: pointer;
             width: 300px;
             height: 60px;
-            line-height: 2em;
+            // line-height: 2em;
             margin: 30px auto;
             color: #fdfdfd;
             display: flex;
             align-items: center;
-            justify-content: center;
+            // justify-content: space-around;
             animation: shakeMe 1s ease-out;
         }
         textarea {

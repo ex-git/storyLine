@@ -19,6 +19,10 @@ export default class timeline extends Component {
             <li key='1'>
                 <div className='image'>
                     <img src={happy1} alt='happy1'  />
+                    <img src={happy5} alt='happy6' />
+                    <img src={happy6} alt='happy6' />
+                    <img src={happy5} alt='happy6' />
+                    <img src={happy6} alt='happy6' />
                 </div>
                 <div className='moment'>
                     <span className='text'>The special Moment</span>    
@@ -37,10 +41,10 @@ export default class timeline extends Component {
             <li key='3'>
                 <div className='image'>
                     <img src={happy3} alt='happy3'  />
-                    <img src={happy4} alt='happy4' width='200' />
-                    <img src={happy5} alt='happy6' width='200' />
-                    <img src={happy6} alt='happy6' width='200' />
-                    <img src={happy7} alt='happy6' width='200' />
+                    <img src={happy4} alt='happy4' />
+                    <img src={happy5} alt='happy6' />
+                    <img src={happy6} alt='happy6' />
+                    <img src={happy7} alt='happy6' />
                 </div>
                 <div className='moment'>
                     <span className='text'>The special Moment</span>    
