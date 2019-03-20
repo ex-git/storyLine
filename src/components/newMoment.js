@@ -16,6 +16,7 @@ export default class newMoment extends Component {
 
 
   handleUpload(e) {
+    console.log(this.files.files);
     this.setState({
       uploadBoxText: this.files.files.length === 1 ? `${this.files.files.length} file selected` : `${this.files.files.length} files selected`
     })
