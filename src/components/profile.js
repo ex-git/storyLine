@@ -5,12 +5,10 @@ import './userForm.scss'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css'
 
-import {handleLogin} from '../actions'
+export default class profile extends Component {
 
-import {connect} from 'react-redux'
-
-export class login extends Component {
-
+    //use create notification queue using notify
+    // toast = notify.createShowQueue()
     handleSubmit(e) {
         e.preventDefault();
         const messages = []
@@ -36,43 +34,35 @@ export class login extends Component {
             }))
         }
         else {
-            toast.success('Scuess. But this is just a demo :) So nothing can be changed~', {
+            toast.success('Scuess. But this is just a demo :) So nothing will change~', {
                 className: 'toastMsg',
                 //add id to remove duplicate message
                 toastId: 0
             })
-            setTimeout(()=>{
-                let userInfo = {
-                    name: this.username.value
-                    // password: this.password.value
-                }
-                this.props.dispatch(handleLogin(userInfo))
-                this.props.history.push('/timeline')
-            }, 2000)
-            
         }
     }
 
 
   render() {
     return (
-      <section className='login' onSubmit={e=>this.handleSubmit(e)} >
-        <form className='loginForm'>
-            <ToastContainer 
-                position="top-center"
-                autoClose={6000}
-                hideProgressBar={false}
-                closeOnClick
-                rtl={false}
-                pauseOnVisibilityChange
-                draggable
-                pauseOnHover
-            />
-            <legend>Log In</legend>
+      <section className='profile' onSubmit={e=>this.handleSubmit(e)}>
+        <ToastContainer 
+            position="top-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            closeOnClick
+            rtl={false}
+            pauseOnVisibilityChange
+            draggable
+            pauseOnHover
+        />
+        <form className='profileForm'>
+            <legend>My Profile</legend>
             <label htmlFor='username'>User Name</label>
             <input id='username'
                 type='text'
                 ref={input => this.username = input}
+                defaultValue={document.cookie.match(/^user/) ? document.cookie.match(/^user/).input.split('=').slice(-1)[0] : ''}
             ></input>
             <br></br>
             <label htmlFor='password'>Password</label>
@@ -81,15 +71,9 @@ export class login extends Component {
                 type='password'
                 ref={input => this.password = input}
             ></input>
-            <button type='submit'>Submit</button>
+            <button type='submit'>Update</button>
         </form>
       </section>
     )
   }
 }
-
-const mapStateToProps = state => ({
-    auth: state.auth
-})
-
-export default connect(mapStateToProps)(login)

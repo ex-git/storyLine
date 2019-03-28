@@ -1,22 +1,25 @@
 import React, { Component } from 'react'
-import Notifications, {notify} from 'react-notify-toast';
+// import Notifications, {notify} from 'react-notify-toast';
 import 'date-input-polyfill-react'
 import './newMoment.scss'
+
+
+import {connect} from 'react-redux';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons'
 
-export default class newMoment extends Component {
+// import { submitMoment } from '../actions';
 
+export class newMoment extends Component {
   state = {
     uploadBoxText: 'Choose files...'
   }
   //use create notification queue using notify
-  toast = notify.createShowQueue()
+  // toast = notify.createShowQueue()
 
 
   handleUpload(e) {
-    console.log(this.files.files);
     this.setState({
       uploadBoxText: this.files.files.length === 1 ? `${this.files.files.length} file selected` : `${this.files.files.length} files selected`
     })
@@ -45,13 +48,19 @@ export default class newMoment extends Component {
   }
 
   handleType(e) {
-    console.log(this.story.value)
+    // console.log(this.story.value)
   }
 
   handleSubmit(e) {
       e.preventDefault();
+      const formData = new FormData();
+      Array.from(this.files.files).forEach((file, idx) => formData.append('file', file))
+      formData.append('date', this.date.value)
+      formData.append('story', this.story.value)
+      // this.props.dispatch(submitMoment(formData))
       this.files.value = ''
       this.story.value = ''
+      this.date.value = ''
       this.setState({
         uploadBoxText: 'Choose files...'
       })
@@ -61,11 +70,18 @@ export default class newMoment extends Component {
     let uploadIcon = <FontAwesomeIcon icon={faCloudUploadAlt} size='3x'/>
     return (
       <section className='newMoment'>
-        <Notifications />
-        <form onSubmit={e=>this.handleSubmit(e)} className='new'>
+        {/* <Notifications /> */}
+        <form onSubmit={(e)=>this.handleSubmit(e)} className='new' encType="multipart/form-data">
             <legend>Record New Moment</legend>
             <label htmlFor="when">Date:</label>
-            <input id="when" name="when" type="date" placeholder='mm/dd/yyyy' date-format="mm/dd/yyyy"></input>
+            <input
+              id="when"
+              name="when"
+              type="date"
+              placeholder='mm/dd/yyyy'
+              date-format="mm/dd/yyyy"
+              ref={input=> this.date = input}
+            ></input>
             <input
               accept="image/*"
               type='file'
@@ -87,3 +103,5 @@ export default class newMoment extends Component {
     )
   }
 }
+
+export default connect()(newMoment)

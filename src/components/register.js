@@ -5,12 +5,10 @@ import './userForm.scss'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css'
 
-import {handleLogin} from '../actions'
+export default class register extends Component {
 
-import {connect} from 'react-redux'
-
-export class login extends Component {
-
+    //use create notification queue using notify
+    // toast = notify.createShowQueue()
     handleSubmit(e) {
         e.preventDefault();
         const messages = []
@@ -36,19 +34,14 @@ export class login extends Component {
             }))
         }
         else {
-            toast.success('Scuess. But this is just a demo :) So nothing can be changed~', {
+            toast.success('Success! But this is just a demo. So your info will not be sent to remot server. Login with anything you want for testing.', {
                 className: 'toastMsg',
                 //add id to remove duplicate message
                 toastId: 0
             })
             setTimeout(()=>{
-                let userInfo = {
-                    name: this.username.value
-                    // password: this.password.value
-                }
-                this.props.dispatch(handleLogin(userInfo))
-                this.props.history.push('/timeline')
-            }, 2000)
+                this.props.history.push('/login')
+            }, 9000)
             
         }
     }
@@ -56,19 +49,19 @@ export class login extends Component {
 
   render() {
     return (
-      <section className='login' onSubmit={e=>this.handleSubmit(e)} >
-        <form className='loginForm'>
-            <ToastContainer 
-                position="top-center"
-                autoClose={6000}
-                hideProgressBar={false}
-                closeOnClick
-                rtl={false}
-                pauseOnVisibilityChange
-                draggable
-                pauseOnHover
-            />
-            <legend>Log In</legend>
+      <section className='register' onSubmit={e=>this.handleSubmit(e)}>
+        <ToastContainer 
+            position="top-center"
+            autoClose={8000}
+            hideProgressBar={false}
+            closeOnClick
+            rtl={false}
+            pauseOnVisibilityChange
+            draggable
+            pauseOnHover
+        />
+        <form className='registerForm'>
+            <legend>Create New Account</legend>
             <label htmlFor='username'>User Name</label>
             <input id='username'
                 type='text'
@@ -87,9 +80,3 @@ export class login extends Component {
     )
   }
 }
-
-const mapStateToProps = state => ({
-    auth: state.auth
-})
-
-export default connect(mapStateToProps)(login)

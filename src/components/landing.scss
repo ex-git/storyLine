@@ -4,15 +4,21 @@
         text-align: center
     }
     .photosWall {
+        // height: 95vh;
         /* Prevent vertical gaps */
+        // display: inline-block;
         line-height: 0;
         column-count: 6;
-        column-gap: 0px;
-        img {
-            /* in case there are inline attributes */
-            width: 100% !important;
-            height: auto !important;
+        column-gap: 0;
+        .photo {
+            width:100%;
+            img {
+                /* in case there are inline attributes */
+                width: 100% !important;
+                height: auto !important;
+            }
         }
+        
         @media (max-width: 1200px) {
             column-count: 4;
         }
@@ -26,5 +32,11 @@
         @media (max-width: 400px) {
             column-count: 1;
         }
+    }
+    .intro {
+        display: flex;
+        height: 35vh;
+        align-items: center;
+        justify-content: center;
     }
 }
