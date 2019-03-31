@@ -14,4 +14,8 @@ section {
     align-items: center;
     justify-content: center;
     min-height: 90vh;
+    margin:auto;
+    @media (max-width: 414px) {
+        text-align: center
+    }
 }
