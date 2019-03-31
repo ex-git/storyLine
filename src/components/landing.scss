@@ -18,22 +18,22 @@
             }
         }
         
-        @media (max-width: 1200px) {
-            column-count: 4;
-        }
+        // @media (max-width: 1200px) {
+        //     column-count: 4;
+        // }
         @media (max-width: 1000px) {
             column-count: 3;
-        
         }
-        @media (max-width: 800px) {
-            column-count: 2;
-        }
-        @media (max-width: 400px) {
-            column-count: 1;
-        }
+        // @media (max-width: 800px) {
+        //     column-count: 2;
+        // }
+        // @media (max-width: 400px) {
+        //     column-count: 1;
+        // }
     }
     .intro {
         display: flex;
+        padding: 15px;
         height: 65vh;
         align-items: center;
         justify-content: center;

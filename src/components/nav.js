@@ -59,7 +59,9 @@ class nav extends Component {
     if(this.props.auth) {
       return (
         <nav role='navigation' >
-            <Link to='/' className='homeLink'>{<FontAwesomeIcon icon={faChild} size='2x'/>}Story Line</Link>
+            <h1>
+              <Link to='/' className='homeLink'>{<FontAwesomeIcon icon={faChild} size='2x'/>}Story Line</Link>
+            </h1>
             <button onClick={this.burgetMemuToggle} className="burger_memu" href="" style={{'visibility': this.props.mobile ? 'visible' :'hidden', 'transform': this.props.burgerMemu? 'rotate(90deg)' : 'none'}}>
               <img src={menuIcon} alt='menu icon' />
             </button>
@@ -75,7 +77,9 @@ class nav extends Component {
     else {
       return (
         <nav role='navigation'>
-            <Link to='/' className='homeLink'>{<FontAwesomeIcon icon={faChild} size='2x'/>}Story Line</Link>
+            <h1>
+              <Link to='/' className='homeLink'>{<FontAwesomeIcon icon={faChild} size='2x'/>}Story Line</Link>
+            </h1>
             <button onClick={this.burgetMemuToggle} className="burger_memu" href="" style={{'visibility': this.props.mobile ? 'visible' :'hidden', 'transform': this.props.burgerMemu? 'rotate(90deg)' : 'none'}}>
               <img src={menuIcon} alt='menu icon' />
             </button>
