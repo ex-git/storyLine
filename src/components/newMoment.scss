@@ -1,6 +1,8 @@
 $width: 80vw;
 $legend: 30px;
 
+
+
 .newMoment {
     .new {
         width: $width;
@@ -105,5 +107,6 @@ $legend: 30px;
             background-color: blue;
             color: #fff
         }
+        @import "./toastMsg";
     }
 }

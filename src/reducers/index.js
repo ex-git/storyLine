@@ -2,12 +2,16 @@ import {
     // SUBMIT_MOMENT,
     SHOW_PHOTOS,
     HANDLE_LOGIN,
-    HANDLE_LOGOUT
+    HANDLE_LOGOUT,
+    IS_MOBILE,
+    BURGER_MEMU
 } from '../actions'
 
 let initState ={
     photos: [],
-    auth: false
+    auth: false,
+    mobile: false,
+    burgerMemu: false
 }
 
 export const myReducer = (state=initState, action) =>{
@@ -34,6 +38,10 @@ export const myReducer = (state=initState, action) =>{
         //     return state;
         case SHOW_PHOTOS:
             return Object.assign({}, state, {photos: [...new Set([...state.photos, ...action.photosURL])]})
+        case BURGER_MEMU:
+            return Object.assign({}, state, {burgerMemu: action.toggle})
+        case IS_MOBILE:
+            return Object.assign({}, state, {mobile: action.isMobile})
         case HANDLE_LOGIN:
             document.cookie = `user=${action.userInfo.name};max-age=86400;path=/`
             // document.cookie = `authToken=${resJSON.authToken};max-age=86400;path=/`

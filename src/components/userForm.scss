@@ -1,4 +1,4 @@
-.loginForm, .registerForm, .profile {
+.loginForm, .register, .profile {
     // text-align: center;
     legend {
         text-align: center;
@@ -34,17 +34,7 @@
     button:hover {
         animation: hoverMe 1s infinite;
     }
-
-    .toastMsg {
-        font-size: 20px;
-        button {
-            height: 50px;
-            width: 50px;
-            border: none;
-            margin: 0;
-            font-size: 20px
-        }
-    }
+    @import "./toastMsg";
 
     @keyframes hoverMe {
         0% {

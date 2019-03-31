@@ -81,7 +81,7 @@ export class login extends Component {
                 type='password'
                 ref={input => this.password = input}
             ></input>
-            <button type='submit'>Submit</button>
+            <button type='submit'>Sign In</button>
         </form>
       </section>
     )

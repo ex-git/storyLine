@@ -4,7 +4,6 @@
         text-align: center
     }
     .photosWall {
-        // height: 95vh;
         /* Prevent vertical gaps */
         // display: inline-block;
         line-height: 0;
@@ -35,8 +34,25 @@
     }
     .intro {
         display: flex;
-        height: 35vh;
+        height: 65vh;
         align-items: center;
         justify-content: center;
+        flex-direction: column;
+        h2 {
+            font-size: 24px;
+        }
+        .hr_line {
+            width: 80px;
+            border-top: 2px solid #222;
+            margin: 20px
+        }
+        .quote {
+            font-size: 18px
+        }
+        .quote_by {
+            text-align: right;
+            display: inherit;
+            margin: 20px 0
+        }
     }
 }

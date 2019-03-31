@@ -34,7 +34,7 @@ export default class register extends Component {
             }))
         }
         else {
-            toast.success('Success! But this is just a demo. So your info will not be sent to remot server. Login with anything you want for testing.', {
+            toast.success('Success! But this is just a demo. So your info will not be sent to remote server. Redirecting you to login page now.', {
                 className: 'toastMsg',
                 //add id to remove duplicate message
                 toastId: 0

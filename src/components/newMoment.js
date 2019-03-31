@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
-// import Notifications, {notify} from 'react-notify-toast';
+
 import 'date-input-polyfill-react'
 import './newMoment.scss'
 
+//toast notification
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css'
 
 import {connect} from 'react-redux';
 
@@ -15,11 +18,8 @@ export class newMoment extends Component {
   state = {
     uploadBoxText: 'Choose files...'
   }
-  //use create notification queue using notify
-  // toast = notify.createShowQueue()
 
-
-  handleUpload(e) {
+  handleUpload = () => {
     this.setState({
       uploadBoxText: this.files.files.length === 1 ? `${this.files.files.length} file selected` : `${this.files.files.length} files selected`
     })
@@ -39,7 +39,13 @@ export class newMoment extends Component {
       }
     }
     if(messages.length) {
-      messages.forEach(msg=>this.toast(msg, 'error', 2000))
+      messages.forEach((msg,idx)=>toast.error(msg, {
+          className: 'toastMsg',
+          //add delay give accessibility reader enough time to read new pop up
+          delay: idx*1500,
+          //add id to remove duplicate message
+          toastId: idx
+      }))
       this.files.value = ''
       this.setState({
         uploadBoxText: 'Choose files...'
@@ -47,31 +53,64 @@ export class newMoment extends Component {
     }
   }
 
-  handleType(e) {
-    // console.log(this.story.value)
-  }
-
   handleSubmit(e) {
       e.preventDefault();
-      const formData = new FormData();
-      Array.from(this.files.files).forEach((file, idx) => formData.append('file', file))
-      formData.append('date', this.date.value)
-      formData.append('story', this.story.value)
-      // this.props.dispatch(submitMoment(formData))
-      this.files.value = ''
-      this.story.value = ''
-      this.date.value = ''
-      this.setState({
-        uploadBoxText: 'Choose files...'
-      })
+      let messages = []
+      if(this.files.value==='') {
+          messages.push('You need to select at least one image')
+        }
+      if (this.story.value.trim()==='') {
+        messages.push('Did you forget to write something for this moment?')
+      }
+      if (this.date.value==='') {
+        messages.push('You need to select a valid date for this moment')
+      }
+      if(messages.length) {
+          messages.forEach((msg, idx)=>{
+          toast.error(msg, {
+            className: 'toastMsg',
+            //add delay give accessibility reader enough time to read new pop up
+            delay: idx*2000,
+            //add id to remove duplicate message
+            toastId: idx
+          })
+        })
+      }
+      else {
+        const formData = new FormData();
+        Array.from(this.files.files).forEach((file, idx) => formData.append('file', file))
+        formData.append('date', this.date.value)
+        formData.append('story', this.story.value)
+        // this.props.dispatch(submitMoment(formData))
+        this.files.value = ''
+        this.story.value = ''
+        this.date.value = ''
+        this.setState({
+          uploadBoxText: 'Choose files...'
+        })
+        toast.success('Success, but this is just a demo without connection to remote API.', {
+          className: 'toastMsg',
+          //add id to remove duplicate message
+          toastId: 0
+        })
+      }
   }
 
   render() {
     let uploadIcon = <FontAwesomeIcon icon={faCloudUploadAlt} size='3x'/>
     return (
       <section className='newMoment'>
-        {/* <Notifications /> */}
         <form onSubmit={(e)=>this.handleSubmit(e)} className='new' encType="multipart/form-data">
+            <ToastContainer 
+              position="top-center"
+              autoClose={6000}
+              hideProgressBar={false}
+              closeOnClick
+              rtl={false}
+              pauseOnVisibilityChange
+              draggable
+              pauseOnHover
+            />
             <legend>Record New Moment</legend>
             <label htmlFor="when">Date:</label>
             <input
@@ -89,14 +128,14 @@ export class newMoment extends Component {
               name='momentFiles'
               id='momentFile'
               ref={input=> this.files = input}
-              onChange={e=>this.handleUpload(e)}
+              onChange={this.handleUpload}
             ></input>
             <label htmlFor='momentFile'>
               {uploadIcon}
               {this.state.uploadBoxText}
             </label>
             <label htmlFor='shortStory' >-Short Story-</label>
-            <textarea id='shortStory' ref={input=> this.story = input} onChange={e=>this.handleType(e)}></textarea>
+            <textarea id='shortStory' ref={input=> this.story = input}></textarea>
             <button type='submit'>Submit</button>
         </form>
       </section>

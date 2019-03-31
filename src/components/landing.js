@@ -9,10 +9,10 @@ import './landing.scss'
 
 export class landing extends Component {
   componentWillMount() {
-    this.props.photos.length <20 && this.props.dispatch(fetchPhotos());
+    this.props.photos.length <12 && this.props.dispatch(fetchPhotos());
   }
   render() {
-    if(this.props.photos.length <20) {
+    if(this.props.photos.length <15) {
       return <Loading />
     }
     else {
@@ -25,7 +25,13 @@ export class landing extends Component {
             {photos}
           </div>
           <div className='intro'>
-              <h2>Your personal timeline start here</h2>
+              <h2>EVERY PHOTO HAS ITS OWN STORY!</h2>
+              <hr className='hr_line'></hr>
+              <p>
+                <span className='quote'>"The best thing about a picture is that it never changes, even when the people in it do"</span>
+                <br></br>
+                <span className='quote_by'>-Andy Warhol</span>
+              </p>
           </div>
         </section>
       )
